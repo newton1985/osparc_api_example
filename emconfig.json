@@ -1,0 +1,129 @@
+{
+    "Active Tissues": {
+        "WM": true,
+        "GM": false,
+        "Bone": true,
+        "Disc": true,
+        "Fat": true,
+        "CSF": true,
+        "Rootlets": true,
+        "IPG": false,
+        "Paddle": true,
+        "Electrodes": NaN,
+        "Lower_Boundary": NaN,
+        "Saline": NaN,
+        "Upper_Boundary": NaN
+    },
+    "Automatic Grid Settings (mm)": {
+        "WM": [
+            0.5,
+            0.5,
+            1.5
+        ],
+        "GM": [
+            1,
+            1,
+            1
+        ],
+        "Bone": [
+            10.0,
+            10.0,
+            10.0
+        ],
+        "Disc": [
+            10.0,
+            10.0,
+            10.0
+        ],
+        "Fat": [
+            4,
+            4,
+            4
+        ],
+        "CSF": [
+            1,
+            1,
+            1
+        ],
+        "Rootlets": [
+            0.1,
+            0.1,
+            0.3
+        ],
+        "IPG": [
+            3.5,
+            3.5,
+            3.5
+        ],
+        "Paddle": [
+            2.0,
+            2.0,
+            2.0
+        ],
+        "Electrodes": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "Lower_Boundary": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "Saline": [
+            10.0,
+            10.0,
+            10.0
+        ],
+        "Upper_Boundary": [
+            1.0,
+            1.0,
+            1.0
+        ]
+    },
+    "Voxeler Priorities": {
+        "WM": 8,
+        "GM": 9,
+        "Bone": 1,
+        "Disc": 2,
+        "Fat": 3,
+        "CSF": 4,
+        "Rootlets": 10,
+        "IPG": 5,
+        "Paddle": 6,
+        "Electrodes": 7,
+        "Lower_Boundary": 11,
+        "Saline": 0,
+        "Upper_Boundary": 12
+    },
+    "Material Conductivity (S/m)": {
+        "WM": NaN,
+        "GM": 0.23,
+        "Bone": 0.02,
+        "Disc": 0.65,
+        "Fat": 0.04,
+        "CSF": 1.7,
+        "Rootlets": NaN,
+        "IPG": NaN,
+        "Paddle": 1e-12,
+        "Electrodes": NaN,
+        "Lower_Boundary": NaN,
+        "Saline": 2.0,
+        "Upper_Boundary": NaN
+    },
+    "Relative Permittivity": {
+        "WM": NaN,
+        "GM": 1.0,
+        "Bone": 1.0,
+        "Disc": 1.0,
+        "Fat": 1.0,
+        "CSF": 1.0,
+        "Rootlets": NaN,
+        "IPG": NaN,
+        "Paddle": 3.0,
+        "Electrodes": NaN,
+        "Lower_Boundary": NaN,
+        "Saline": 1.0,
+        "Upper_Boundary": NaN
+    }
+}

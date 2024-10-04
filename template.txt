@@ -1,0 +1,59 @@
+import os
+import sys
+import glob
+import shutil
+import XCore
+import time, datetime
+import s4l_v1.document as doc
+import s4l_v1.simulation.emlf as emlf
+
+from s4l_v1 import analysis
+from s4l_v1._api.application import run_application, get_app_safe
+
+
+if get_app_safe() is None:
+    run_application(disable_ui_plugins=True)
+app = get_app_safe()
+
+# In o²S²PARC, INPUT_FOLDER and OUTPUT_FOLDER are environment variables 
+# that map to the Service input/output ports, respectively
+input_dir = os.environ["INPUT_FOLDER"] 
+output_dir = os.environ["OUTPUT_FOLDER"]
+
+
+if __name__ == '__main__':
+    start_time = time.time()
+    root =  input_dir
+    model_name = "$smashfile".rstrip(".smash")
+    model_path = os.path.join(root, model_name+'.smash')
+    config_path = os.path.join(root, 'emconfig_'+model_name+'.json')
+    # set which tissues are active in the config file --> Bones and Discs are inactivated
+
+    # intialize app and open project
+    app = XCore.GetOrCreateConsoleApp()
+    doc.New()
+    doc.Open(model_path)
+    analysis.ResetAnalysis()
+
+    ## your code goes here
+    os.makedirs(os.path.join(input_dir, "Results_EM"), exist_ok=True)
+    list_active_sites = ["E" + str(int("$electrode_index")).zfill(2)]
+    
+    for active_site in list_active_sites:
+        sim_mock = emlf.ElectroQsOhmicSimulation()
+        sim_mock.Name = f"Subject_Anisotropy_{active_site}"
+        doc.AllSimulations.Add(sim_mock)
+
+    print("Total time of execution: ", datetime.timedelta(seconds=(time.time() - start_time)))
+    print("Simulation DONE")
+
+    # write data to outputfile_0_name, etc.
+    for result in glob.glob(os.path.join(input_dir, "$smashfile"+"_Results", "*_Output.h5")):
+        fn = os.path.basename(result)
+        shutil.copy(result, os.path.join(output_dir, fn))
+
+    source_dir = os.path.join(input_dir, "Results_EM")    
+    dest_dir = os.path.join(output_dir, "Results_EM")
+    if os.path.exists(dest_dir):
+        shutil.rmtree(dest_dir)
+    shutil.copytree(source_dir, dest_dir) 
